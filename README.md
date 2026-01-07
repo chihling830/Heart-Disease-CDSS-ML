@@ -1,4 +1,4 @@
-# Heart Disease Clinical Decision Support System (CDSS) with Explainable Machine Learning
+# Heart Disease Clinical Decision Support System (CDSS) with Explainable Machine Learning (2025)
 
 ## Project Overview
 This project develops an **Explainable Machine Learning–based Clinical Decision Support System (CDSS)** for heart disease risk prediction.  
@@ -20,13 +20,9 @@ This project addresses that gap by:
 ---
 
 ## Dataset
-- Public heart disease dataset (clinical and demographic variables)
+- Heart Disease Cleveland Dataset (UCI Machine Learning Repository)
 - Features include age, sex, chest pain type, blood pressure, cholesterol, ECG results, etc.
 - Binary classification target: presence or absence of heart disease
-
-> Note: Due to privacy considerations, raw data are not included in this repository.
-
----
 
 ##  Methods & Pipeline
 
@@ -64,34 +60,3 @@ Rather than stopping at feature importance, this project **translates SHAP outpu
 - Supporting clinicians in prioritizing follow-up tests or interventions
 
 This design reflects **real-world clinical workflows**, not just academic evaluation metrics.
-
----
-
-## Repository Structure
-
-```text
-Heart-Disease-CDSS-ML/
-│
-├── README.md
-├── requirements.txt
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── README.md
-│
-├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_model_training.ipynb
-│   ├── 03_model_evaluation.ipynb
-│   └── 04_shap_analysis.ipynb
-│
-├── src/
-│   ├── data_preprocessing.py
-│   ├── train.py
-│   ├── evaluate.py
-│   └── shap_utils.py
-│
-└── reports/
-    ├── figures/
-    └── final_report.pdf
