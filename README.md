@@ -1,62 +1,109 @@
-# Heart Disease Clinical Decision Support System (CDSS) with Explainable Machine Learning (2025)
+# Heart Disease Clinical Decision Support System (CDSS)
+### Explainable Machine Learning for Clinical Risk Assessment
 
 ## Project Overview
-This project develops an **Explainable Machine Learning–based Clinical Decision Support System (CDSS)** for heart disease risk prediction.  
-Beyond predictive performance, the focus is on **model interpretability (SHAP)** and **translating model outputs into actionable clinical insights**, bridging the gap between academic modeling and real-world medical decision-making.
+This project develops an **Explainable Machine Learning–based Clinical Decision Support System (CDSS)** for heart disease risk prediction.
 
-The project was completed as a team-based applied machine learning study and later reorganized into a production-style repository structure for reproducibility and clarity.
+Beyond predictive accuracy, the core contribution lies in **feature importance analysis and SHAP-based explainability**, transforming model outputs into **actionable clinical decision-support insights**.
+
+The project bridges **academic machine learning modeling** and **real-world healthcare decision-making**, positioning ML models as **early-warning and assistive tools**, rather than black-box predictors.
 
 ---
 
 ## Motivation & Clinical Context
-Heart disease diagnosis often involves multiple risk factors and subjective clinical judgment.  
-While machine learning models can achieve high predictive accuracy, **lack of interpretability limits their adoption in healthcare**.
+Heart disease diagnosis involves multiple interacting risk factors such as blood pressure, cholesterol levels, ECG results, and exercise-induced symptoms.  
+Although machine learning models can achieve high predictive performance, **lack of interpretability remains a major barrier to clinical adoption**.
 
-This project addresses that gap by:
+This project addresses this gap by:
 - Building robust ML models for heart disease prediction
-- Applying **SHAP (SHapley Additive exPlanations)** for explainability
-- Mapping model explanations into **practical decision-support insights** suitable for CDSS scenarios
+- Systematically analyzing **feature importance across different model families**
+- Applying **SHAP (SHapley Additive Explanations)** for global and individual-level interpretability
+- Translating explanations into **CDSS-style clinical follow-up recommendations**
 
 ---
 
 ## Dataset
-- Heart Disease Cleveland Dataset (UCI Machine Learning Repository)
-- Features include age, sex, chest pain type, blood pressure, cholesterol, ECG results, etc.
-- Binary classification target: presence or absence of heart disease
+- **Source**: UCI Machine Learning Repository – Heart Disease Cleveland Dataset
+- **Samples**: 304 records (297 after cleaning)
+- **Features**: 14 clinical attributes
+- **Target**: Binary classification (presence / absence of heart disease)
 
-##  Methods & Pipeline
+Key features include:
+- Age, resting blood pressure, cholesterol
+- Maximum heart rate (thalach)
+- ST depression (oldpeak)
+- Chest pain type (cp)
+- Thalassemia (thal)
+- Number of major vessels (ca)
 
-### 1.Data Preprocessing
-- Missing value handling
-- Feature scaling
-- Categorical encoding
-- Train-test split
+---
 
-### 2.Models Evaluated
+## Methods & Pipeline
+
+### Data Preprocessing
+- Missing value removal
+- One-Hot Encoding for categorical variables
+- StandardScaler for numerical features
+- Stratified 10-fold cross-validation
+
+### Models Evaluated
 - Logistic Regression
+- Decision Tree
 - Random Forest
-- Support Vector Machine (SVM)
-- Gradient Boosting–based models
+- Support Vector Machine (Linear & RBF)
+- XGBoost
 
-### 3.Model Evaluation
+### Evaluation Metrics
 - Accuracy
 - Precision / Recall
 - F1-score
 - ROC-AUC
-
-### 4.Explainability (Core Contribution)
-- **SHAP values** used to analyze:
-  - Global feature importance
-  - Individual-level prediction explanations
-- Identification of clinically meaningful risk drivers
+- Confusion Matrix
 
 ---
 
-## Explainable AI → Clinical Insights
-Rather than stopping at feature importance, this project **translates SHAP outputs into CDSS-style recommendations**, such as:
+## Feature Importance & Explainability (Core Contribution)
 
-- Identifying high-risk patients even when traditional risk scores are ambiguous
-- Highlighting which physiological factors most strongly contribute to a specific prediction
-- Supporting clinicians in prioritizing follow-up tests or interventions
+### Linear Models (Logistic Regression, Linear SVM)
+Key positive risk contributors:
+- **oldpeak** (ST depression after exercise)
+- **trestbps** (resting blood pressure)
+- **chol** (cholesterol)
 
-This design reflects **real-world clinical workflows**, not just academic evaluation metrics.
+Protective factors:
+- **thalach** (maximum heart rate)
+- **age**
+
+These models provide **directional interpretability** aligned with clinical reasoning.
+
+---
+
+### Tree-Based Models (Random Forest, XGBoost)
+Most influential features:
+- **thal** (myocardial perfusion condition)
+- **cp** (chest pain type)
+- **ca** (number of major vessels)
+- **exang** (exercise-induced angina)
+
+These models capture **nonlinear interactions and complex risk patterns**.
+
+---
+
+### SHAP Analysis
+SHAP was applied to:
+- Analyze **global feature importance**
+- Explain **individual patient predictions**
+- Visualize how feature values push predictions toward higher or lower risk
+
+This enhances model transparency and supports clinical trust.
+
+---
+
+## From Explainable AI to CDSS
+Rather than stopping at model interpretation, this project maps explainability results into **clinical decision-support suggestions**, such as:
+
+- Identifying high-risk patients with ambiguous traditional scores
+- Highlighting dominant risk drivers for individual predictions
+- Supporting prioritization of follow-up examinations
+
+
